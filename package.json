@@ -7,7 +7,7 @@
     "start": "python bot.py"
   },
   "dependencies": {
-    "discord.py[voice]": "0.6.12",
+    "discord.py[voice]": "0.16.12",
 
   }
 }
