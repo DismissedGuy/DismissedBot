@@ -1,0 +1,13 @@
+{
+  "name": "DismissedBot",
+  "description": "Discord bot by DismissedGuy",
+  "version": "0.0.0",
+  "main": "bot.py",
+  "scripts": {
+    "start": "python bot.py"
+  },
+  "dependencies": {
+    "discord.py[voice]": "0.6.12",
+
+  }
+}
