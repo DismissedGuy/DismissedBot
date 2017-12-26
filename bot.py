@@ -1,6 +1,7 @@
 import os
 import logging
 from geopy.distance import vincenty
+from discord.ext.commands import Bot
 import discord
 
 logging.basicConfig() #set up logging to Heroku terminal
