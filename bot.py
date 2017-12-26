@@ -1,23 +1,27 @@
 import os
+import logging
+from geopy.distance import vincenty
 import discord
 
-client = discord.Client()
+logging.basicConfig() #set up logging to Heroku terminal
 
-@client.event
-async def on_message(message):
-    # we do not want the bot to reply to itself
-    if message.author == client.user:
-        return
+client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 
-    if message.content.startswith('!hello'):
-        msg = 'Hello {0.author.mention}'.format(message)
-        await client.send_message(message.channel, msg)
+@client.command
+async def dist(ctx, place1x, place1y, place2x, place2y):
+    place1 = (place1x, place1y)
+    place2 = (place2x, place1y)
+    try:
+        client.say(vincenty(newport_ri, cleveland_oh).miles)
+    except:
+        client.say("You sure you did it correctly?")
 
 @client.event
 async def on_ready():
-    print('Logged in as')
+    print('------------------')
+    print('Logged in as:')
     print(client.user.name)
     print(client.user.id)
-    print('------')
+    print('------------------')
 
 client.run(os.environ['BOT_TOKEN'])
