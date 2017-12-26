@@ -4,18 +4,17 @@ from geopy.distance import vincenty
 from discord.ext.commands import Bot
 import discord
 
-logging.basicConfig() #set up logging to Heroku terminal
+logging.basicConfig(level=logging.INFO) #set up logging to Heroku terminal
 
 client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 
 @client.command()
-async def dist(ctx, place1x, place1y, place2x, place2y):
+async def dist(place1x, place1y, place2x, place2y):
     place1 = (place1x, place1y)
     place2 = (place2x, place1y)
-    try:
-        client.say(vincenty(place1, place2).miles)
-    except:
-        client.say("You sure you did it correctly?")
+    distance = vincenty(place1, place2).miles
+    print(distance)
+    client.say(distance)
 
 @client.event
 async def on_ready():
