@@ -1,3 +1,4 @@
+import os
 import discord
 
 client = discord.Client()
@@ -19,4 +20,4 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-client.run(BOT_TOKEN)
+client.run(os.environ['BOT_TOKEN'])
