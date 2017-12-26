@@ -8,7 +8,7 @@ logging.basicConfig() #set up logging to Heroku terminal
 
 client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 
-@client.command
+@client.command()
 async def dist(ctx, place1x, place1y, place2x, place2y):
     place1 = (place1x, place1y)
     place2 = (place2x, place1y)
