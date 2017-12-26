@@ -13,7 +13,7 @@ async def dist(ctx, place1x, place1y, place2x, place2y):
     place1 = (place1x, place1y)
     place2 = (place2x, place1y)
     try:
-        client.say(vincenty(newport_ri, cleveland_oh).miles)
+        client.say(vincenty(place1, place2).miles)
     except:
         client.say("You sure you did it correctly?")
 
