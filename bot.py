@@ -13,8 +13,8 @@ async def dist(place1x, place1y, place2x, place2y):
     place1 = (place1x, place1y)
     place2 = (place2x, place1y)
     distance = vincenty(place1, place2).miles
-    print(distance)
-    client.say(distance)
+
+    client.say(str(distance))
 
 @client.event
 async def on_ready():
