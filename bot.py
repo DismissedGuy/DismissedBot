@@ -10,7 +10,11 @@ logging.basicConfig(level=logging.INFO) #set up logging to Heroku terminal
 client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 
 @client.command()
-async def bash(command):
+async def version():
+    bot.say(discord.__version__ + "\n" + discord.version_info)
+
+@client.command()
+async def bash(*, message: str):
     x = subprocess.check_output([command]).decode("utf-8")
     
     await client.say("Input: " + command + "\n Output: " + str(x)) #just to be sure, convert to str to prevent possible exceptions
