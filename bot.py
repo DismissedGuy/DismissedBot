@@ -15,7 +15,10 @@ async def version():
 
 @client.command()
 async def bash(*, message: str):
-    x = subprocess.check_output([command]).decode("utf-8")
+    try:
+        x = subprocess.check_output([command]).decode("utf-8")
+    except:
+        await client.say("Error executing command!")
     
     await client.say("Input: " + command + "\n Output: " + str(x)) #just to be sure, convert to str to prevent possible exceptions
 
