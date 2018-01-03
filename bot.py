@@ -14,7 +14,7 @@ async def version():
     bot.say(discord.__version__ + "\n" + discord.version_info)
 
 @client.command()
-async def bash(*, message: str):
+async def bash(*, command: str):
     try:
         x = subprocess.check_output([command]).decode("utf-8")
     except:
