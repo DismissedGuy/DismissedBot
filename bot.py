@@ -13,7 +13,7 @@ client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 async def bash(command):
     x = subprocess.check_output([command])
     
-    await client.say("Input: " + command + "\n Output: " + x)
+    await client.say("Input: " + command + "\n Output: " + str(x))
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
