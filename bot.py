@@ -17,7 +17,7 @@ async def version():
 async def bash(*, command: str):
     try:
         x = subprocess.check_output(command.split()).decode("utf-8")
-        await client.say("Input: " + command + "\nOutput: " + str(x)) #just to be sure, convert to str to prevent possible exceptions
+        await client.say("**Input:** " + ```command``` + "\n**Output:** " + ```str(x)```) #just to be sure, convert to str to prevent possible exceptions
     except Exception as error:
         await client.say(error)
 
