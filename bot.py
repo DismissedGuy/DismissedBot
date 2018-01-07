@@ -16,10 +16,13 @@ async def version():
 @client.command()
 async def bash(*, command: str):
     try:
-        x = subprocess.check_output(command.split()).decode("utf-8")
-        await client.say("**Input:** " + "```" + command + "```" + "\n**Output:** " + "```" + str(x) + "```") #just to be sure, convert to str to prevent possible exceptions
+        output = subprocess.run(command.split(), stdout=subprocess.PIPE, shell=True)
+        if not output == "": #empty
+            bot.say("```" + output.stdout.decode('utf-8') + "```")
+        else:
+            bot.say("(No output)")
     except Exception as error:
-        await client.say(error)
+        bot.say(error)
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
