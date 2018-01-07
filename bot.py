@@ -18,11 +18,11 @@ async def bash(*, command: str):
     try:
         output = subprocess.run(command.split(), stdout=subprocess.PIPE, shell=True)
         if not output == "": #empty
-            await bot.say("```" + output.stdout.decode('utf-8') + "```")
+            await client.say("```" + output.stdout.decode('utf-8') + "```")
         else:
-            await bot.say("(No output)")
+            await client.say("(No output)")
     except Exception as error:
-        await bot.say("```" + error.stdout.decode('utf-8') + "```")
+        await client.say("```" + error.stdout.decode('utf-8') + "```")
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
