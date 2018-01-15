@@ -2,7 +2,7 @@ import os
 import logging
 from geopy.distance import vincenty
 import subprocess
-from discord.ext.commands import Bot, checks
+from discord.ext.commands import Bot
 import discord
 
 logging.basicConfig(level=logging.INFO) #set up logging to Heroku terminal
@@ -25,7 +25,6 @@ async def bash(*, command: str):
         await client.say("```" + error.stdout.decode('utf-8') + "```")
 
 @client.command(pass_context=True, hidden=True)
-@checks.is_owner()
 async def debug(self, ctx, *, code : str):
   """Evaluates code."""
   code = code.strip('` ')
