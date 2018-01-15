@@ -25,15 +25,13 @@ async def bash(*, command: str):
         await client.say("```" + error.stdout.decode('utf-8') + "```")
 
 @client.command(pass_context=True, hidden=True)
-async def debug(self, ctx, *, code : str):
+async def debug( *, code : str):
   """Evaluates code."""
   code = code.strip('` ')
   python = '```py\n{}\n```'
   result = None
-  env = { 'bot': self.bot, 'ctx': ctx, 'message': ctx.message, 'server': ctx.message.server, 'channel': ctx.message.channel, 'author': ctx.message.author }
-  env.update(globals())
   try:
-    result = eval(code, env)
+    result = eval(code)
     if inspect.isawaitable(result):
       result = await result
   except Exception as e:
