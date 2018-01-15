@@ -24,7 +24,7 @@ async def bash(*, command: str):
     except Exception as error:
         await client.say("```" + error.stdout.decode('utf-8') + "```")
 
-@commands.command(pass_context=True, hidden=True)
+@client.command(pass_context=True, hidden=True)
 @checks.is_owner()
 async def debug(self, ctx, *, code : str):
   """Evaluates code."""
@@ -37,9 +37,9 @@ async def debug(self, ctx, *, code : str):
     result = eval(code, env)
     if inspect.isawaitable(result):
       result = await result
-  except Exception as e:
-    await self.bot.say(python.format(type(e).__name__ + ': ' + str(e)))
-    return
+    except Exception as e:
+      await self.bot.say(python.format(type(e).__name__ + ': ' + str(e)))
+      return
   await self.bot.say(python.format(result))
 
 @client.command()
