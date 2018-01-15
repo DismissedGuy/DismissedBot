@@ -25,7 +25,7 @@ async def bash(*, command: str):
         await client.say("```" + error.stdout.decode('utf-8') + "```")
 
 @client.command(pass_context=True, hidden=True)
-async def debug(*, code: str):
+async def debug(ctx, *, code: str):
   """Evaluates code."""
   code = code.strip('` ')
   python = '```py\n{}\n```'
