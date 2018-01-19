@@ -29,10 +29,10 @@ async def debug(ctx, *, code: str):
   """Evaluates code."""
   code = code.strip('`')
   try:
-    bot.say(eval(code))
+    client.say(eval(code))
   except Exception as e:
     print(e)
-    bot.say("Error executing!")
+    client.say("Error executing!")
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
