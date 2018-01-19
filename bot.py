@@ -30,7 +30,7 @@ async def debug(ctx, *, code: str):
   code = code.strip('`')
   try:
     eval(code)
-    client.say("Done with no errors!")
+    await client.say("Done with no errors!")
   except Exception as e:
     print(e)
     await client.say("Error executing! traceback:\n```" + e + "```")
