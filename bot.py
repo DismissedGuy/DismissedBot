@@ -29,10 +29,11 @@ async def debug(ctx, *, code: str):
   """Evaluates code."""
   code = code.strip('`')
   try:
-    await client.say(eval(code))
+    eval(code)
+    client.say("Done with no errors!")
   except Exception as e:
     print(e)
-    await client.say("Error executing!")
+    await client.say("Error executing! traceback:\n```" + e + "```")
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
