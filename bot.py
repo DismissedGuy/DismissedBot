@@ -17,7 +17,7 @@ async def version():
 async def bash(*, command: str):
     try:
         output = subprocess.run(command.split(), stdout=subprocess.PIPE, shell=True)
-        if not output == "": #empty
+        if not output == "" or output == " ": #empty
             await client.say("```" + output.stdout.decode('utf-8') + "```")
         else:
             await client.say("(No output)")
@@ -27,17 +27,12 @@ async def bash(*, command: str):
 @client.command(pass_context=True, hidden=True)
 async def debug(ctx, *, code: str):
   """Evaluates code."""
-  code = code.strip('` ')
-  python = '```py\n{}\n```'
-  result = None
+  code = code.strip('`')
   try:
-    result = eval(code)
-    if inspect.isawaitable(result):
-      result = await result
+    bot.say(eval(code))
   except Exception as e:
-    await self.bot.say(python.format(type(e).__name__ + ': ' + str(e)))
-    return
-  await self.bot.say(python.format(result))
+    print(e)
+    bot.say("Error executing!")
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
