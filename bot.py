@@ -16,7 +16,7 @@ async def version():
 @client.command()
 async def bash(*, command: str):
     try:
-        output = subprocess.run(command.split(), stdout=subprocess.PIPE, shell=True)
+        output = subprocess.run(command, stdout=subprocess.PIPE, shell=True)
         if not output == "" or output == " ": #empty
             await client.say("```" + output.stdout.decode('utf-8') + "```")
         else:
@@ -29,8 +29,8 @@ async def debug(ctx, *, code: str):
   """Evaluates code."""
   code = code.strip('`')
   try:
-    eval(code)
-    await client.say("Done with no errors!")
+    result = eval(code)
+    await client.say("Done with no errors! `"+result+"`")
   except Exception as e:
     print(e)
     await client.say("Error executing! traceback:\n```" + str(e) + "```")
