@@ -33,7 +33,7 @@ async def debug(ctx, *, code: str):
     await client.say("Done with no errors!")
   except Exception as e:
     print(e)
-    await client.say("Error executing! traceback:\n```" + e + "```")
+    await client.say("Error executing! traceback:\n```" + str(e) + "```")
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
