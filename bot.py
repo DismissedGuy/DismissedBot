@@ -29,8 +29,10 @@ async def debug(ctx, *, code: str):
   """Evaluates code."""
   code = code.strip('`')
   try:
+    if inspect.isawaitable(code):
+      code = await code
     result = eval(code)
-    await client.say("Done with no errors! `"+str(result)+"`")
+    await client.say("Done with no errors! ```"+str(result)+"```")
   except Exception as e:
     print(e)
     await client.say("Error executing! traceback:\n```" + str(e) + "```")
