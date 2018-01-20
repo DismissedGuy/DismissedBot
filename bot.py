@@ -1,7 +1,6 @@
 import os
 import inspect
 import logging
-import ctypes
 from geopy.distance import vincenty
 import subprocess
 from discord.ext.commands import Bot
@@ -17,6 +16,7 @@ async def version():
     bot.say(discord.__version__ + "\n" + discord.version_info)
 
 @client.command()
+@checks.is_owner()
 async def bash(*, command: str):
     try:
         output = subprocess.run(command.split(), stdout=subprocess.PIPE)
@@ -28,6 +28,7 @@ async def bash(*, command: str):
         await client.say("```" + error.stdout.decode('utf-8') + "```")
 
 @client.command(pass_context=True, hidden=True)
+@checks.is_owner()
 async def debug(ctx, *, code: str):
     code = code.strip('` ')
     python = '```py\n{}\n```'
