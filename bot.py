@@ -30,6 +30,18 @@ async def debug(ctx, *, code: str):
     code = code.strip('` ')
     python = '```py\n{}\n```'
     result = None
+
+    env = {
+        'bot': self.bot,
+        'ctx': ctx,
+        'message': ctx.message,
+        'server': ctx.message.server,
+        'channel': ctx.message.channel,
+        'author': ctx.message.author
+    }
+
+    env.update(globals())
+
     try:
         result = eval(code, env)
         if inspect.isawaitable(result):
