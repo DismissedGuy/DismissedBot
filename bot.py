@@ -8,6 +8,7 @@ import discord
 
 logging.basicConfig(level=logging.INFO) #set up logging to Heroku terminal
 
+owner = '311869975579066371'
 client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 Server = discord.Server
 
@@ -17,6 +18,8 @@ async def version():
 
 @client.command()
 async def bash(*, command: str):
+    if not ctx.message.author.id == owner:
+      return
     try:
         output = subprocess.run(command.split(), stdout=subprocess.PIPE)
         if not output == "" or output == " ": #empty
@@ -28,6 +31,8 @@ async def bash(*, command: str):
 
 @client.command(pass_context=True, hidden=True)
 async def debug(ctx, *, code: str):
+    if not ctx.message.author.id == owner:
+      return
     code = code.strip('` ')
     python = '```py\n{}\n```'
     result = None
