@@ -1,6 +1,7 @@
 import os
 import inspect
 import logging
+import ctypes
 from geopy.distance import vincenty
 import subprocess
 from discord.ext.commands import Bot
