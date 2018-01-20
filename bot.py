@@ -27,16 +27,18 @@ async def bash(*, command: str):
 
 @client.command(pass_context=True, hidden=True)
 async def debug(ctx, *, code: str):
-  """Evaluates code."""
-  code = code.strip('`')
-  try:
-    if inspect.isawaitable(code):
-      code = await code
-    result = eval(code)
-    await client.say("Done with no errors! ```"+str(result)+"```")
-  except Exception as e:
-    print(e)
-    await client.say("Error executing! traceback:\n```" + str(e) + "```")
+    code = code.strip('` ')
+    python = '```py\n{}\n```'
+    result = None
+    try:
+        result = eval(code, env)
+        if inspect.isawaitable(result):
+            result = await result
+    except Exception as e:
+        await client.say(python.format(type(e).__name__ + ': ' + str(e)))
+        return
+
+    await client.say(python.format(result))
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
