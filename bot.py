@@ -9,6 +9,7 @@ import discord
 logging.basicConfig(level=logging.INFO) #set up logging to Heroku terminal
 
 client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
+Server = discord.Server
 
 @client.command()
 async def version():
