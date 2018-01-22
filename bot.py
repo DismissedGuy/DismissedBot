@@ -63,6 +63,10 @@ async def presence(ctx, *, game=None):
     if not ctx.message.author.id == owner:
         return
     await client.change_presence(game=discord.Game(name=game, type=0))
+    if game == None:
+        await client.say("Removed the current playing status!")
+    else:
+        await client.say('Changed playing status to "{}"!'.format(game))
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
