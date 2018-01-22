@@ -62,7 +62,7 @@ async def debug(ctx, *, code: str):
 async def presence(ctx, *, game=None):
     if not ctx.message.author.id == owner:
         return
-    client.change_presence(game=discord.Game(name=game, type=0))
+    await client.change_presence(game=discord.Game(name=game, type=0))
 
 @client.command()
 async def dist(place1x, place1y, place2x, place2y):
