@@ -58,9 +58,9 @@ async def debug(ctx, *, code: str):
 
     await client.say(python.format(result))
     
-@client.command(hidden=True)
+@client.command(pass_context=True, hidden=True)
 async def presence(ctx, *, game=None):
-    if not message.author == owner:
+    if not ctx.message.author.id == owner:
         return
     client.change_presence(game=discord.Game(name=game, type=0))
 
