@@ -53,16 +53,10 @@ async def debug(ctx, *, code: str):
         if inspect.isawaitable(result):
             result = await result
     except Exception as e:
-        try:
-            result = exec(code, env)
-        except Exception as err:
-            await client.say(python.format(type(e).__name__ + ': ' + str(e)))
+        await client.say(python.format(type(e).__name__ + ': ' + str(e)))
         return
 
-    if not result == None:
-        await client.say(python.format(result))
-    else:
-        await client.say("(No output)")
+    await client.say(python.format(result))
     
 @client.command(pass_context=True, hidden=True)
 async def presence(ctx, *, game=None):
