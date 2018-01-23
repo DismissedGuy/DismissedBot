@@ -63,7 +63,7 @@ async def announcement(ctx, *, announcement=None):
     if not ctx.message.author.id == owner or announcement == None:
         return
     embed=discord.Embed(title="📣 New announcement!", description=announcement, color=0xff00ff)
-    async for botserver in client.servers:
+    for botserver in client.servers:
         await client.send_message(client.get_channel(discord.utils.find(lambda c: c.name == 'general', botserver.channels)), embed=embed)
     
 @client.command(pass_context=True, hidden=True)
