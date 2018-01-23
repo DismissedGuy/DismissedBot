@@ -65,7 +65,7 @@ async def announcement(ctx, *, announcement=None):
     embed=discord.Embed(title="📣 New announcement!", description=announcement, color=0xff00ff)
     embed.set_image(client.user.avatar_url)
     async for botserver in client.servers:
-        await client.send_message(client.get_channel(discord.utils.find(lambda c: c.name == 'general', botserver.channels)), embed=embed)
+        await client.send_message(client.get_channel(discord.utils.find(lambda c: c.name == 'general', botserver.channels).id), embed=embed)
     
 @client.command(pass_context=True, hidden=True)
 async def presence(ctx, *, game=None):
