@@ -63,6 +63,7 @@ async def announcement(ctx, *, announcement=None):
     if not ctx.message.author.id == owner or announcement == None:
         return
     embed=discord.Embed(title="📣 New announcement!", description=announcement, color=0xff00ff)
+    embed.set_footer(text="Timestamp: {}".format(ctx.message.timestamp))
     for botserver in client.servers:
         try:
             msgchannel = discord.utils.get(botserver.channels, name='general')
