@@ -17,7 +17,7 @@ async def version():
     bot.say(discord.__version__ + "\n" + discord.version_info)
 
 @client.command()
-async def bash(*, command: str):
+async def bash( *, command: str):
     if not ctx.message.author.id == owner:
       return
     try:
@@ -63,7 +63,7 @@ async def announcement(ctx, *, announcement=None):
     if not ctx.message.author.id == owner or announcement == None:
         return
     embed=discord.Embed(title="📣 New announcement!", description=announcement, color=0xff00ff)
-    embed.set_footer(text="Timestamp: {}".format(ctx.message.timestamp))
+    embed.set_footer(text=ctx.message.timestamp)
     for botserver in client.servers:
         try:
             msgchannel = discord.utils.get(botserver.channels, name='general')
