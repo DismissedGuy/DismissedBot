@@ -6,7 +6,7 @@ import discord
 logging.basicConfig(level=logging.INFO) #set up logging to Heroku terminal
 
 """COGS"""
-startup_extensions = ["cogs." + ext for ext in os.listdir("cogs/")]
+startup_extensions = ["cogs.owner", "cogs.fun"]
 
 owner = '311869975579066371'
 client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
