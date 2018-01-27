@@ -76,4 +76,4 @@ class Owner():
 			
 
 def setup(bot):
-	client.add_cog(Owner(bot))
+	bot.add_cog(Owner(bot))
