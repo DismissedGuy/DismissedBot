@@ -25,7 +25,7 @@ async def load(extension_name : str):
 async def unload(extension_name : str):
     """Unloads an extension."""
     bot.unload_extension(extension_name)
-	await bot.say("{} unloaded.".format(extension_name))
+    await bot.say("{} unloaded.".format(extension_name))
 
 @client.event
 async def on_ready():
