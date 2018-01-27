@@ -1,8 +1,8 @@
 from geopy.distance import vincenty
 from discord.ext import commands
 
-class Fun(self, bot):
-	def __init__(self, bot):
+class Fun():
+	def __init__(self, client):
 		self.client = client
 	
 	@client.command()
