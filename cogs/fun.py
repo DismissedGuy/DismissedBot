@@ -15,4 +15,4 @@ class Fun():
 		await self.client.say(str(distance) + " miles")
 
 def setup(bot):
-	client.add_cog(Fun(bot))
+	bot.add_cog(Fun(bot))
