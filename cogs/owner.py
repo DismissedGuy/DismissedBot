@@ -5,9 +5,9 @@ import subprocess
 from discord.ext import commands
 
 class Owner():
-	def __init__(self, client):
-		self.client = client
-		self.owner = '311869975579066371'
+	def __init__(self, bot):
+		self.client = bot
+		owner = '311869975579066371'
 		
 	@commands.command()
 	async def bash(self, *, command: str):

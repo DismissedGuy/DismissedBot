@@ -3,8 +3,8 @@ from discord.ext import commands
 import discord
 
 class Fun():
-	def __init__(self, client):
-		self.client = client
+	def __init__(self, bot):
+		self.client = bot
 	
 	@commands.command()
 	async def dist(self, place1x, place1y, place2x, place2y):
