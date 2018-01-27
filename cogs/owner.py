@@ -2,17 +2,15 @@ import discord
 import inspect
 import ctypes #opus shit ugh
 import subprocess
-from discord.ext import commands
+from discord.ext import commands, checks
 
 class Owner():
 	def __init__(self, bot):
 		self.client = bot
-		owner = '311869975579066371'
 		
 	@commands.command()
+    @checks.is_owner()
 	async def bash(self, *, command: str):
-		if not ctx.message.author.id == self.owner:
-			return
 		try:
 			output = subprocess.run(command.split(), stdout=subprocess.PIPE)
 			if not output == "" or output == " ": #empty
@@ -23,9 +21,8 @@ class Owner():
 			await self.client.say("```" + error.stdout.decode('utf-8') + "```")
 
 	@commands.command(pass_context=True, hidden=True)
+    @checks.is_owner()
 	async def debug(self, ctx, *, code: str):
-		if not ctx.message.author.id == self.owner:
-			return
 		code = code.strip('` ')
 		python = '```py\n{}\n```'
 		result = None
@@ -52,8 +49,9 @@ class Owner():
 		await self.client.say(python.format(result))
 
 	@commands.command(pass_context=True, hidden=True)
+    @checks.is_owner()
 	async def announcement(self, ctx, *, announcement=None):
-		if not ctx.message.author.id == self.owner or announcement == None:
+		if announcement == None:
 			return
 		embed=discord.Embed(title="ðŸ“£ New announcement!", description=announcement, color=0xff00ff)
 		embed.set_footer(text=ctx.message.timestamp)
@@ -65,9 +63,8 @@ class Owner():
 			await self.client.send_message(msgchannel, embed=embed)
     
 	@commands.command(pass_context=True, hidden=True)
+    @checks.is_owner()
 	async def presence(self, ctx, *, game=None):
-		if not ctx.message.author.id == self.owner:
-			return
 		await self.client.change_presence(game=discord.Game(name=game, type=0))
 		if game == None:
 			await self.client.say("Removed the current playing status!")
