@@ -1,2 +1,5 @@
 discord.py[voice]==0.16.6
+pip
+youtube_dl
+colorlog
 geopy
