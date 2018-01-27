@@ -51,7 +51,7 @@ class Owner():
 
 		await self.client.say(python.format(result))
 
-	@client.command(pass_context=True, hidden=True)
+	@commands.command(pass_context=True, hidden=True)
 	async def announcement(self, ctx, *, announcement=None):
 		if not ctx.message.author.id == self.owner or announcement == None:
 			return
@@ -64,7 +64,7 @@ class Owner():
 				pass
 			await self.client.send_message(msgchannel, embed=embed)
     
-	@client.command(pass_context=True, hidden=True)
+	@commands.command(pass_context=True, hidden=True)
 	async def presence(self, ctx, *, game=None):
 		if not ctx.message.author.id == self.owner:
 			return
