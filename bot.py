@@ -13,7 +13,7 @@ owner = '311869975579066371'
 client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 
 @client.command()
-@checks.is_owner()
+@commands.is_owner()
 async def load(extension_name : str):
     """Loads an extension."""
     try:
@@ -24,7 +24,7 @@ async def load(extension_name : str):
     await client.say("{} loaded.".format(extension_name))
 
 @client.command()
-@checks.is_owner()
+@commands.is_owner()
 async def unload(extension_name : str):
     """Unloads an extension."""
     client.unload_extension(extension_name)
