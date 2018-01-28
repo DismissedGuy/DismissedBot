@@ -1,6 +1,7 @@
 import os
 import logging
-from discord.ext.commands import Bot, checks
+from discord.ext.commands import Bot
+from discord.ext import checks
 import discord
 
 logging.basicConfig(level=logging.INFO) #set up logging to Heroku terminal
