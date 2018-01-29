@@ -5,8 +5,8 @@ import subprocess
 from discord.ext import commands
 
 class Owner():
-	def __init__(self, bot):
-		self.client = bot
+	def __init__(self, client):
+		self.client = client
 		
 	@commands.command()
 	async def bash(self, *, command: str):
