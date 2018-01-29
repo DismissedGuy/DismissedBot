@@ -5,8 +5,8 @@ import subprocess
 from discord.ext import commands
 
 class Owner():
-	def __init__(self, client):
-		self.client = client
+	def __init__(self, bot):
+		self.client = bot
 		
 	@commands.command()
 	async def bash(self, *, command: str):
@@ -68,5 +68,5 @@ class Owner():
 			await self.client.say('Changed playing status to "{}"!'.format(game))
 			
 
-def setup(bot):
-	bot.add_cog(Owner(bot))
+def setup(client):
+	client.add_cog(Owner(client))
