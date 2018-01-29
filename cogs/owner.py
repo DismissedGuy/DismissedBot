@@ -68,5 +68,5 @@ class Owner():
 			await self.client.say('Changed playing status to "{}"!'.format(game))
 			
 
-def setup(client):
-	client.add_cog(Owner(client))
+def setup(bot):
+	bot.add_cog(Owner(bot))
