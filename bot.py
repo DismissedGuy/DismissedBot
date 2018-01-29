@@ -16,7 +16,7 @@ client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 async def load(extension_name : str):
     """Loads an extension."""
     try:
-        client.load_extension(extension_name)
+        client.load_extension(“cogs.”+extension_name)
     except (AttributeError, ImportError) as e:
         await client.say("```py\n{}: {}\n```".format(type(e).__name__, str(e)))
         return
@@ -25,7 +25,7 @@ async def load(extension_name : str):
 @client.command()
 async def unload(extension_name : str):
     """Unloads an extension."""
-    client.unload_extension(extension_name)
+    client.unload_extension(“cogs.”+extension_name)
     await client.say("{} unloaded.".format(extension_name))
 
 @client.event
