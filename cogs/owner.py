@@ -26,7 +26,7 @@ class Owner():
 		result = None
 
 		env = {
-			'bot': self.client,
+			'client': self.client,
 			'ctx': ctx,
 			'message': ctx.message,
 			'server': ctx.message.server,
