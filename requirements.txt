@@ -3,3 +3,4 @@ pip
 youtube_dl
 colorlog
 geopy
+cleverwrap
