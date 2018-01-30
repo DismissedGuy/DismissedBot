@@ -18,7 +18,7 @@ class Fun():
 				cw.reset()
 				await self.client.send_message(message.channel, "Successfully reset cleverbot configuration!")
 			else:
-				await self.client.send_message(message.channel, cw.say(message))
+				await self.client.send_message(message.channel, cw.say(message.content))
 
 			await self.client.process_commands(message)
 	
