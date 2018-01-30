@@ -1,10 +1,20 @@
 from geopy.distance import vincenty
+from cleverwrap import CleverWrap
 from discord.ext import commands
 import discord
 
 class Fun():
 	def __init__(self, bot):
 		self.client = bot
+		
+	@client.event
+	async def on_message(message):
+		if message.channel.name.lower() == 'cleverbot':
+			if message.content.lower() == 'reset':
+				cw.reset()
+				self.client.say("Successfully reset cleverbot configuration!")
+			else:
+				self.client.say(cw.say(message))
 	
 	@commands.command()
 	async def dist(self, place1x, place1y, place2x, place2y):
