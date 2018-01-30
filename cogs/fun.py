@@ -13,9 +13,9 @@ class Fun():
 			cw = CleverWrap(os.environ['CLEVER_TOKEN'])
 			if message.content.lower() == 'reset':
 				cw.reset()
-				self.client.say("Successfully reset cleverbot configuration!")
+				await self.client.say("Successfully reset cleverbot configuration!")
 			else:
-				self.client.say(cw.say(message))
+				await self.client.say(cw.say(message))
 	
 	@commands.command()
 	async def dist(self, place1x, place1y, place2x, place2y):
