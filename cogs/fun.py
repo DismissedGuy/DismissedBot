@@ -9,6 +9,7 @@ class Fun():
 		
 	async def on_message(self, message):
 		if message.channel.name.lower() == 'cleverbot':
+			cw = CleverWrap(os.environ['CLEVER_TOKEN'])
 			if message.content.lower() == 'reset':
 				cw.reset()
 				self.client.say("Successfully reset cleverbot configuration!")
