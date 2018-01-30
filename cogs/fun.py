@@ -7,7 +7,6 @@ class Fun():
 	def __init__(self, bot):
 		self.client = bot
 		
-	@self.client.event
 	async def on_message(message):
 		if message.channel.name.lower() == 'cleverbot':
 			if message.content.lower() == 'reset':
