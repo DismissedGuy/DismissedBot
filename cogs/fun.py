@@ -9,6 +9,9 @@ class Fun():
 		self.client = bot
 		
 	async def on_message(self, message):
+		if message.author == self.client.user:
+			return
+
 		if message.channel.name.lower() == 'cleverbot':
 			cw = CleverWrap(os.environ['CLEVER_TOKEN'])
 			if message.content.lower() == 'reset':
@@ -16,6 +19,8 @@ class Fun():
 				await self.client.send_message(message.channel, "Successfully reset cleverbot configuration!")
 			else:
 				await self.client.send_message(message.channel, cw.say(message))
+
+			await self.client.process_commands(message)
 	
 	@commands.command()
 	async def dist(self, place1x, place1y, place2x, place2y):
