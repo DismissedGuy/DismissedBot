@@ -1,5 +1,6 @@
 from geopy.distance import vincenty
 from cleverwrap import CleverWrap
+import os
 from discord.ext import commands
 import discord
 
