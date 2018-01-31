@@ -18,9 +18,10 @@ class Fun():
 				cw.reset()
 				await self.client.send_message(message.channel, "Successfully reset cleverbot configuration!")
 			else:
+				await client.send_typing(message.channel)
 				await self.client.send_message(message.channel, cw.say(message.content))
 
-			await self.client.process_commands(message)
+		await self.client.process_commands(message)
 	
 	@commands.command()
 	async def dist(self, place1x, place1y, place2x, place2y):
