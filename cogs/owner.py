@@ -8,7 +8,7 @@ class Owner():
 	def __init__(self, bot):
 		self.client = bot
 		
-	@commands.command()
+	@commands.command(hidden=True)
 	async def bash(self, *, command: str):
 		try:
 			output = subprocess.run(command.split(), stdout=subprocess.PIPE)

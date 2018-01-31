@@ -12,7 +12,7 @@ startup_extensions = ["cogs." + cog.strip(".py") for cog in os.listdir("cogs/")]
 owner = '311869975579066371'
 client = Bot(description="A Dismissed Bot", command_prefix="::", pm_help = True)
 
-@client.command()
+@client.command(hidden=True)
 async def load(extension_name : str):
     """Loads an extension."""
     try:
@@ -22,7 +22,7 @@ async def load(extension_name : str):
         return
     await client.say("{} loaded.".format(extension_name))
 
-@client.command()
+@client.command(hidden=True)
 async def unload(extension_name : str):
     """Unloads an extension."""
     client.unload_extension(extension_name)
