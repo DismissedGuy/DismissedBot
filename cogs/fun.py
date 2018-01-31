@@ -21,7 +21,7 @@ class Fun():
 				await self.client.send_typing(message.channel)
 				await self.client.send_message(message.channel, cw.say(message.content))
 
-		await self.client.process_commands(message)
+			await self.client.process_commands(message)
 
 def setup(bot):
 	bot.add_cog(Fun(bot))
