@@ -1,4 +1,5 @@
 from discord.ext import commands
+import discord
 import datetime
 import asyncio
 from geopy.distance import vincenty
@@ -17,15 +18,18 @@ class Utilities():
 	
 	@commands.command(pass_context=True, description='Shows the current time.')
 	async def time(self, tz=None):
-		if tz == None:
+		if not tz:
+			print("not specified")
 			await self.client.say(":x: You didn't specify your timezone! Please tell me yours (in GMT).")
 			tz = await self.client.wait_for_message(timeout=15.0, author=ctx.message.author, channel=ctx.message.channel)
 		try:
 			tz = int(tz.replace("GMT",""))
 		except:
+			print("int parsing failed")
 			error = True
 		if error or not tz in range(-12,15):
 			await self.client.say(":x: That's not a valid timezone!")
+			return
 		
 		currmsg = await self.client.say("Please wait while I'm getting the time...")
 		
