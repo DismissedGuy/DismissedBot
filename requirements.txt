@@ -1,6 +1,7 @@
-discord.py[voice]==0.16.6
+discord.py[voice]
 pip
 youtube_dl
 colorlog
 geopy
 cleverwrap
+pytz
