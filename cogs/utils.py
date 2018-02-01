@@ -44,7 +44,7 @@ class Utilities():
 			time = ":clock: {0.hour}:{0.minute}:{0.second}".format(now)
 			
 			#create embed
-			embed=discord.Embed(color='#FF0000')
+			embed=discord.Embed(color=0xFF0000)
 			embed.add_field(name=date, value=time, inline=False)
 			embed.set_footer(text="All info provided by my system time.")
 			
