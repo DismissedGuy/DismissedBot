@@ -17,7 +17,7 @@ class Utilities():
 		await self.client.say(str(distance) + " miles")
 	
 	@commands.command(pass_context=True, description='Shows the current time.')
-	async def time(self, tz=None):
+	async def time(self, *tz):
 		if not tz:
 			print("not specified")
 			await self.client.say(":x: You didn't specify your timezone! Please tell me yours (in GMT).")
@@ -28,7 +28,7 @@ class Utilities():
 			print("int parsing failed")
 			error = True
 		if error or not tz in range(-12,15):
-			await self.client.say(":x: That's not a valid timezone!")
+			await self.client.say(":x: `{}` is not a valid timezone!".format(tz))
 			return
 		
 		currmsg = await self.client.say("Please wait while I'm getting the time...")
