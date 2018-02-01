@@ -22,7 +22,7 @@ class Utilities():
 	async def time(self, ctx, *, tz='Europe/London'):
 		if tz.lower() == 'list':
 			with open("tz.txt", "w+") as timezones:
-				timezones.write(pytz.all_timezones)
+				timezones.write(str(pytz.all_timezones))
 				await self.client.send_file(ctx.message.channel, timezones)
 			os.remove('tz.txt')
 			return
