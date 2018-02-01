@@ -17,11 +17,12 @@ class Utilities():
 		await self.client.say(str(distance) + " miles")
 	
 	@commands.command(pass_context=True, description='Shows the current time.')
-	async def time(self, ctx, *, tz):
+	async def time(self, ctx,*,tz):
 		if not tz:
 			print("not specified")
 			await self.client.say(":x: You didn't specify your timezone! Please tell me yours (in GMT).")
 			tz = await self.client.wait_for_message(timeout=15.0, author=ctx.message.author, channel=ctx.message.channel)
+		error = False
 		try:
 			tz = int(tz.replace("GMT",""))
 		except:
