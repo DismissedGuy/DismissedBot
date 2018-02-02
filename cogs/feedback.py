@@ -15,7 +15,7 @@ class Feedback():
 		
 		confirm = await self.client.wait_for_message(timeout=60.0, author=message.author, channel=None)
 		
-		if confirm == None or not confirm.content.lower() in ["yes", "y", "yea", "yep", "ye"]:
+		if confirm == None or not confirm.content.lower() in ["yes", "y", "yea", "yep", "yup", "ye", "sure", "yee", "yeah", "yos", "yahs", "yesh", "ok", "aye aye", "aight", "definitely"]:
 			await self.client.send_message(message.author, ":x: Feedback discarded.")
 			self.sending=False
 			return
