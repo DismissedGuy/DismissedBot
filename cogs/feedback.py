@@ -5,7 +5,7 @@ class Feedback():
 	def __init__(self, bot):
 		self.client = bot
 		
-	async def on_message(message):
+	async def on_message(self, message):
 		if message.author == self.client.user or not message.channel.name == None or message.content.startswith('::'):
 			print("go return")
 			return
