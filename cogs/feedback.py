@@ -23,3 +23,6 @@ class Feedback():
 		
 		await self.client.send_message(self.client.get_channel("408972669615341568"), ":exclamation: Received a new feedback!", embed=embed)
 		await self.client.say(":white_check_mark: Successfully sent feedback!")
+		
+def setup(bot):
+	bot.add_cog(Feedback(bot))
