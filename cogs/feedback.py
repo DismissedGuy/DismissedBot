@@ -9,7 +9,7 @@ class Feedback():
 	async def on_message(self, message):
 		if message.author == self.client.user or not message.channel.name == None or message.content.startswith('::'):
 			return
-		elif sending:
+		elif self.sending:
 			await self.client.send_message(message.author, ":x: Sorry, the bot is busy at the moment! Try again later.") #else on_message() gets triggered again, causing a double feedback
 			return
 		
