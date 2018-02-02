@@ -7,19 +7,17 @@ class Feedback():
 		self.sending = False
 		
 	async def on_message(self, message):
-		if message.author == self.client.user or not message.channel.name == None or message.content.startswith('::'):
+		if message.author == self.client.user or not message.channel.name == None or message.content.startswith('::') or self.sending:
 			return
-		elif self.sending:
-			await self.client.send_message(message.author, ":x: Sorry, the bot is busy at the moment! Try again later.") #else on_message() gets triggered again, causing a double feedback
-			return
-		
-		await self.client.send_message(message.author, "You want to send this feedback to the owner:\n```{}```\nIs this correct? (Yes/No)".format(message.content))
 		
 		self.sending=True
+		await self.client.send_message(message.author, "You want to send this feedback to the owner:\n```{}```\nIs this correct? (Yes/No)".format(message.content))
+		
 		confirm = await self.client.wait_for_message(timeout=60.0, author=message.author, channel=None)
 		
 		if confirm == None or not confirm.content.lower() in ["yes", "y", "yea", "yep", "ye"]:
 			await self.client.send_message(message.author, ":x: Feedback discarded.")
+			self.sending=False
 			return
 		
 		embed = discord.Embed(color=0xFF000)
