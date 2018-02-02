@@ -9,7 +9,7 @@ class Fun():
 		self.client = bot
 		
 	async def on_message(self, message):
-		if message.author == self.client.user:
+		if message.author == self.client.user or message.content.startswith('::'):
 			return
 
 		if message.channel.name.lower() == 'cleverbot':

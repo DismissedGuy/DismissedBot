@@ -52,7 +52,7 @@ class Owner():
 			return
 		embed=discord.Embed(title="ðŸ“£ New announcement!", description=announcement, color=0xff00ff)
 		embed.set_footer(text=ctx.message.timestamp)
-		for botserver in client.servers:
+		for botserver in self.client.servers:
 			try:
 				msgchannel = discord.utils.get(botserver.channels, name='general')
 			except:
