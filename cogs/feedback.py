@@ -7,6 +7,7 @@ class Feedback():
 		
 	async def on_message(message):
 		if message.author == self.client.user or not message.channel.name == None or message.content.startswith('::'):
+			print("go return")
 			return
 		
 		await self.client.say("You want to send this feedback to the owner:\n```{}```\nIs this correct? (Yes/No)".format(message.content))
@@ -14,7 +15,7 @@ class Feedback():
 		confirm = await self.client.wait_for_message(timeout=60.0, channel=message.author)
 		
 		if confirm == None or not confirm.content.lower() in ["yes", "y", "yea", "yep", "ye"]:
-			self.client.say(":x: Feedback discarded.")
+			await self.client.say(":x: Feedback discarded.")
 			return
 		
 		embed = discord.Embed(color=0xFF000)
