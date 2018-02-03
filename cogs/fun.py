@@ -31,13 +31,11 @@ class Fun():
 			return
 		predicts = predicts.text[len(query) + 5:len(predicts.text) - 2].replace("\"","").split(",") #text to usable list
 		
-		print(predicts)
 		if predicts == ['']: #none found
 			await self.client.say(":x: I couldn't find any autocompletions!")
 			return
 		elif len(predicts) > 5:
 			predicts = predicts[0:5]
-		print(predicts)
 		
 		embed = discord.Embed(color=0xFF0000)
 		embed.add_field(name="A total of {} results were returned:".format(len(predicts)), value='\n'.join(predicts))
