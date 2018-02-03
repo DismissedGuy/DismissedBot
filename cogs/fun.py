@@ -34,6 +34,7 @@ class Fun():
 		print(predicts)
 		if predicts == ['']: #none found
 			await self.client.say(":x: I couldn't find any autocompletions!")
+			return
 		elif len(predicts) > 5:
 			predicts = predicts[0:5]
 		print(predicts)
