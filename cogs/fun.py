@@ -24,7 +24,7 @@ class Fun():
 			await self.client.process_commands(message)
 			
 	@commands.command(pass_context=True, description="Make google autocomplete your query!")
-	async def complete(self, query):
+	async def complete(self, ctx, query):
 		predicts = requests.get("http://suggestqueries.google.com/complete/search?client=firefox&q=" + query)
 		if not r.status_code == 200: #failed to get valid response
 			await self.bot.say(":warning: An error occured while retrieving the data! Please try again later.")
