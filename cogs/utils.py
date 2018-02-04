@@ -25,8 +25,8 @@ class Utilities():
 			"""not in DBans"""
 			embed=discord.Embed(color=0x00d500)
 			embed.set_thumbnail(url=user.avatar_url)
-			embed.add_field(name=User:, value="{0.name}#{0.discriminator} (ID: {0.id})".format(user), inline=False)
-			embed.add_field(name=Is on DBans:, value=False, inline=False)
+			embed.add_field(name="User:", value="{0.name}#{0.discriminator} (ID: {0.id})".format(user), inline=False)
+			embed.add_field(name="Is on DBans:", value=False, inline=False)
 		else:
 			"""in DBans"""
 			reason = r.json()[3]
@@ -34,10 +34,10 @@ class Utilities():
 			
 			embed=discord.Embed(color=0xfe0a10)
 			embed.set_thumbnail(url=user.avatar_url)
-			embed.add_field(name=User:, value="{0.name}#{0.discriminator} (ID: {0.id})".format(user), inline=False)
-			embed.add_field(name=Is on DBans:, value=True, inline=False)
-			embed.add_field(name=Reason:, value=reason, inline=True)
-			embed.add_field(name=Proof:, value=proof, inline=True)
+			embed.add_field(name="User:", value="{0.name}#{0.discriminator} (ID: {0.id})".format(user), inline=False)
+			embed.add_field(name="Is on DBans:", value=True, inline=False)
+			embed.add_field(name="Reason:", value=reason, inline=True)
+			embed.add_field(name="Proof:", value=proof, inline=True)
 			
 		await self.client.edit_message(plswait, new_content=":white_check_mark: DBans list fetched!", embed=embed)
 	
