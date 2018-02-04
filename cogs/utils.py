@@ -15,8 +15,6 @@ class Utilities():
 			await self.client.say(":x: Please enter a correct user ID!")
 			return
 		
-		plswait = await self.client.say("Please wait while I'm retrieving the results...")
-		
 		payload = {"token":os.environ['DBANS_TOKEN'], "userid":id, "version":3}
 		r = requests.post("https://bans.discordlist.net/api", data=payload)
 		
@@ -30,7 +28,7 @@ class Utilities():
 		else:
 			"""in DBans"""
 			reason = r.json()[3]
-			proof = r.json()[9:-11]
+			proof = r.json()[4][9:-11]
 			
 			embed=discord.Embed(color=0xfe0a10)
 			embed.set_thumbnail(url=user.avatar_url)
@@ -39,7 +37,7 @@ class Utilities():
 			embed.add_field(name="Reason:", value=reason, inline=True)
 			embed.add_field(name="Proof:", value=proof, inline=True)
 			
-		await self.client.edit_message(plswait, new_content=":white_check_mark: DBans list fetched!", embed=embed)
+		await self.client.send_message(ctx.message.channel, ":white_check_mark: DBans list fetched!", embed=embed)
 	
 	@commands.command()
 	async def dist(self, long1, lat1, long2, lat2):
