@@ -1,14 +1,45 @@
 from discord.ext import commands
 import discord
-import os
-import pytz
-import datetime
-import asyncio
+import os, pytz, datetime, asyncio, requests
 from geopy.distance import vincenty
 
 class Utilities():
 	def __init__(self, bot):
 		self.client = bot
+		
+	@commands.command(pass_context=True, description="Check dbans for a user ID")
+	async def dbans(self, ctx, id=ctx.message.author.id):
+		try:
+			user = await self.client.get_user_info(id)
+		except discord.NotFound:
+			await self.client.say(":x: Please enter a correct user ID!")
+			return
+		
+		plswait = await self.client.say("Please wait while I'm retrieving the results...")
+		
+		payload = {"token":os.environ['DBANS_TOKEN'], "userid":id, "version":3}
+		r = requests.post("https://bans.discordlist.net/api", data=payload)
+		
+		#I KNOW the following is dirty af but hey it works ok so yea
+		if r.text == 'False':
+			"""not in DBans"""
+			embed=discord.Embed(color=0x00d500)
+			embed.set_thumbnail(url=user.avatar_url)
+			embed.add_field(name=User:, value="{0.name}#{0.discriminator} (ID: {0.id})".format(user), inline=False)
+			embed.add_field(name=Is on DBans:, value=False, inline=False)
+		else:
+			"""in DBans"""
+			reason = r.json()[3]
+			proof = r.json()[9:-11]
+			
+			embed=discord.Embed(color=0xfe0a10)
+			embed.set_thumbnail(url=user.avatar_url)
+			embed.add_field(name=User:, value="{0.name}#{0.discriminator} (ID: {0.id})".format(user), inline=False)
+			embed.add_field(name=Is on DBans:, value=True, inline=False)
+			embed.add_field(name=Reason:, value=reason, inline=True)
+			embed.add_field(name=Proof:, value=proof, inline=True)
+			
+		await self.client.edit_message(plswait, new_content=":white_check_mark: DBans list fetched!", embed=embed)
 	
 	@commands.command()
 	async def dist(self, long1, lat1, long2, lat2):

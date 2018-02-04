@@ -6,6 +6,11 @@ class Feedback():
 		self.client = bot
 		self.sending = False
 		
+	@commands.command(pass_context=True, description="Leave my owner a feedback!")
+	async def feedback(self, ctx):
+		await self.client.add_reaction(ctx.message, '✅')
+		await self.client.send_message(ctx.message.author, "Send your feedback here!")
+		
 	async def on_message(self, message):
 		if message.author == self.client.user or not message.channel.name == None or message.content.startswith('::') or self.sending:
 			return
