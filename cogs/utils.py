@@ -8,7 +8,7 @@ class Utilities():
 		self.client = bot
 		
 	@commands.command(pass_context=True, description="Check dbans for a user ID")
-	async def dbans(self, ctx, id=ctx.message.author.id):
+	async def dbans(self, ctx, id="390709163837095937"):
 		try:
 			user = await self.client.get_user_info(id)
 		except discord.NotFound:

@@ -1,4 +1,5 @@
 from discord.ext import commands
+import asyncio
 import discord
 
 class Feedback():
@@ -9,6 +10,7 @@ class Feedback():
 	@commands.command(pass_context=True, description="Leave my owner a feedback!")
 	async def feedback(self, ctx):
 		await self.client.add_reaction(ctx.message, '✅')
+		await asyncio.sleep(0.25)
 		await self.client.send_message(ctx.message.author, "Send your feedback here!")
 		
 	async def on_message(self, message):
