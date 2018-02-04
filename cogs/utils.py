@@ -11,7 +11,7 @@ class Utilities():
 	async def dbans(self, ctx, id="390709163837095937"):
 		try:
 			user = await self.client.get_user_info(id)
-		except discord.NotFound:
+		except discord.NotFound, discord.HTTPException :
 			await self.client.say(":x: Please enter a correct user ID!")
 			return
 		
