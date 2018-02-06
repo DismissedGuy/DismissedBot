@@ -31,6 +31,7 @@ async def unload(ctx, extension_name: str):
 
 @client.event
 async def on_ready():
+    print(discord.__version__)
     print('------------------')
     print('Logged in as:')
     print(client.user.name)
