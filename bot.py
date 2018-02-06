@@ -37,7 +37,7 @@ async def on_ready():
     print(client.user.id)
     print('------------------')
 
-    if __name__ == '__main__':
+if __name__ == '__main__':
     for extension in startup_extensions:
         try:
             client.load_extension(extension)
