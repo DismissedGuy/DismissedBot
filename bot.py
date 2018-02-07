@@ -12,7 +12,7 @@ startup_extensions = ['cogs.' + cog.strip('.py') for cog in os.listdir('cogs/')]
 client = Bot(description='DismissedBot is a multifunctional Discord bot focused on being very user friendly.', command_prefix='::', pm_help=True)
 
 @client.command(hidden=True)
-@comands.is_owner()
+@commands.is_owner()
 async def load(ctx, extension_name: str):
     'Loads an extension.'
     try:
