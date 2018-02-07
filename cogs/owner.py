@@ -10,7 +10,7 @@ class Owner():
         self.client = bot
 
     @commands.command(hidden=True)
-	@commands.is_owner()
+    @commands.is_owner()
     async def bash(self, ctx, *, command: str):
         try:
             output = subprocess.run(command.split(), stdout=subprocess.PIPE)
@@ -22,7 +22,7 @@ class Owner():
             await ctx.send(('```' + error.stdout.decode('utf-8')) + '```')
 
     @commands.command(hidden=True)
-	@commands.is_owner()
+    @commands.is_owner()
     async def debug(self, ctx, *, code: str):
         code = code.strip('` ')
         python = '```py\n{}\n```'
@@ -49,7 +49,7 @@ class Owner():
 		await ctx.send(python.format(result))
 
     @commands.command(hidden=True)
-	@commands.is_owner()
+    @commands.is_owner()
     async def announcement(self, ctx, *, announcement=None):
         if announcement == None:
             return
@@ -63,7 +63,7 @@ class Owner():
             await msgchannel.send(embed=embed)
 
 	@commands.command(hidden=True)
-	@commands.is_owner()
+    @commands.is_owner()
     async def presence(self, ctx, *, game=None):
         await self.client.change_presence(game=discord.Game(name=game, type=0))
         
