@@ -38,7 +38,7 @@ class Owner():
         }
         env.update(globals())
         
-		try:
+        try:
             result = eval(code, env)
             if inspect.isawaitable(result):
                 result = await result

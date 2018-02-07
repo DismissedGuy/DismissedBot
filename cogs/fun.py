@@ -30,14 +30,14 @@ class Fun():
             return
         predicts = predicts.text[len(query) + 5:len(predicts.text) - 2].replace('"', '').split(',')
         
-		if predicts == ['']:
+        if predicts == ['']:
             await ctx.send(":x: I couldn't find any autocompletions!")
             return
         
-		elif len(predicts) > 5:
+        elif len(predicts) > 5:
             predicts = predicts[0:5]
         
-		embed = discord.Embed(color=16711680)
+        embed = discord.Embed(color=16711680)
         embed.add_field(name='A total of {} results were returned:'.format(len(predicts)), value='\n'.join(predicts))
         await ctx.channel.send(':white_check_mark: Successfully retrieved autocompletions!', embed=embed)
 

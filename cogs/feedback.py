@@ -20,23 +20,23 @@ class Feedback():
         self.sending = True
         await message.author.send('You want to send this feedback to the owner:\n```{}```\nIs this correct? (Yes/No)'.format(message.content))
         
-		def usercheck(m):
-			return m.author == message.author and m.channel == message.channel
-		try:
-			confirm = await self.client.wait_for('message', check=usercheck, timeout=60.0)
+        def usercheck(m):
+            return m.author == message.author and m.channel == message.channel
+        try:
+            confirm = await self.client.wait_for('message', check=usercheck, timeout=60.0)
         except asyncio.TimeoutError:
-			confirm == None
-		
-		if (confirm == None) or (not (confirm.content.lower() in ['yes', 'y', 'yea', 'yep', 'yup', 'ye', 'sure', 'yee', 'yeah', 'yos', 'yahs', 'yesh', 'ok', 'aye aye', 'aight', 'definitely', 'arr', 'yarr'])):
+            confirm == None
+        
+        if (confirm == None) or (not (confirm.content.lower() in ['yes', 'y', 'yea', 'yep', 'yup', 'ye', 'sure', 'yee', 'yeah', 'yos', 'yahs', 'yesh', 'ok', 'aye aye', 'aight', 'definitely', 'arr', 'yarr'])):
             await message.author.send(':x: Feedback discarded.')
             self.sending = False
             return
         
-		embed = discord.Embed(color=1044480)
+        embed = discord.Embed(color=1044480)
         embed.add_field(name='{0.name}#{0.discriminator} (ID: {0.id})'.format(message.author), value=message.content, inline=False)
         embed.set_footer(text=confirm.timestamp)
         
-		await self.client.get_channel(408972669615341568).send(':exclamation: Received a new feedback!', embed=embed)
+        await self.client.get_channel(408972669615341568).send(':exclamation: Received a new feedback!', embed=embed)
         await message.author.send(':white_check_mark: Successfully sent feedback!')
         self.sending = False
 
