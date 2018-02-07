@@ -28,7 +28,7 @@ class Owner():
         python = '```py\n{}\n```'
         result = None
         
-		env = {
+    env = {
             'client': self.client,
             'ctx': ctx,
             'message': ctx.message,
@@ -46,7 +46,7 @@ class Owner():
             await ctx.send(python.format((type(e).__name__ + ': ') + str(e)))
             return
         
-		await ctx.send(python.format(result))
+        await ctx.send(python.format(result))
 
     @commands.command(hidden=True)
     @commands.is_owner()
@@ -62,12 +62,12 @@ class Owner():
                 pass
             await msgchannel.send(embed=embed)
 
-	@commands.command(hidden=True)
+    @commands.command(hidden=True)
     @commands.is_owner()
     async def presence(self, ctx, *, game=None):
         await self.client.change_presence(game=discord.Game(name=game, type=0))
         
-		if game == None:
+        if game == None:
             await ctx.send('Removed the current playing status!')
         else:
             await ctx.send('Changed playing status to "{}"!'.format(game))
