@@ -11,7 +11,7 @@ class Utilities():
     @commands.command(description='Fetch the avatar of a user')
     async def avatar(self, ctx, id=discord.Member.id):
         try:
-            user = await self.client.get_user_info(id)
+            user = await self.client.get_user_info(int(id))
         except:
             await ctx.send(":x: Sorry, but at the moment, only user IDs are supported! Please check your input and try again.")
             return
