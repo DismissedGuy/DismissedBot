@@ -20,7 +20,7 @@ async def load(ctx, extension_name: str):
     except Exception as e:
         await ctx.send(':x: An error occured while loading the `{}` cog:\n```py\n{}: {}\n```'.format(extension_name,type(e).__name__, str(e)))
         return
-    await ctx.send(':white_check_mark: Successfully loaded cog: `{}` in dir: `cogs.{}.py`'.format(extension_name))
+    await ctx.send(':white_check_mark: Successfully loaded cog: `{}`'.format(extension_name))
 
 @client.command(hidden=True)
 @commands.is_owner()
@@ -31,7 +31,7 @@ async def unload(ctx, extension_name: str):
     except Exception as e:
         await ctx.send(':x: An error occured while unloading the `{}` cog:\n```py\n{}: {}\n```'.format(extension_name,type(e).__name__, str(e)))
         return
-    await ctx.send(':white_check_mark: Successfully unloaded cog: `{}` in dir: `cogs.{}.py`'.format(extension_name))
+    await ctx.send(':white_check_mark: Successfully unloaded cog: `{}`'.format(extension_name))
 
 @client.event
 async def on_ready():
