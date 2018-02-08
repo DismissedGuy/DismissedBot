@@ -23,9 +23,9 @@ class Utilities():
         ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
 
     @commands.command(description='Check dbans for a user ID')
-    async def dbans(self, ctx, id=discord.Member.id):
+    async def dbans(self, ctx, id):
         try:
-            user = await self.client.get_user_info(id)
+            user = await self.client.get_user_info(int(id))
         except:
             await ctx.send(':x: Please enter a correct user ID!')
             return
