@@ -9,7 +9,7 @@ class Utilities():
         self.client = bot
         
     @commands.command(description='Fetch the avatar of a user')
-    async def avatar(self, ctx, id=discord.Member.id):
+    async def avatar(self, ctx, id):
         try:
             user = await self.client.get_user_info(id)
         except Exception as e:
