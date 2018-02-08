@@ -7,19 +7,19 @@ class Utilities():
 
     def __init__(self, bot):
         self.client = bot
-		
-	@commands.command(description='Fetch the avatar of a user')
-	async def avatar(self, ctx, id=discord.Member.id):
-		try:
-			user = await self.client.get_user_info(id)
-		except:
-			await ctx.send(":x: Sorry, but at the moment, only user IDs are supported! Please check your input and try again.")
-			return
-			
-		embed = discord.Embed(color=16648720)
-		embed.set_image(user.avatar_url)
-		
-		ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
+        
+    @commands.command(description='Fetch the avatar of a user')
+    async def avatar(self, ctx, id=discord.Member.id):
+        try:
+            user = await self.client.get_user_info(id)
+        except:
+            await ctx.send(":x: Sorry, but at the moment, only user IDs are supported! Please check your input and try again.")
+            return
+            
+        embed = discord.Embed(color=16648720)
+        embed.set_image(user.avatar_url)
+        
+        ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
 
     @commands.command(description='Check dbans for a user ID')
     async def dbans(self, ctx, id=discord.Member.id):
