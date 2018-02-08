@@ -19,7 +19,7 @@ class Fun():
                 await message.channel.send(':white_check_mark: Successfully reset cleverbot configuration!')
             else:
                 await message.channel.trigger_typing()
-                await message.channel.send(ctx.send(message.content))
+                await message.channel.send(message.content)
             await self.client.process_commands(message)
 
     @commands.command(description='Make google autocomplete your query!')
