@@ -12,8 +12,9 @@ class Utilities():
     async def avatar(self, ctx, id=discord.Member.id):
         try:
             user = await self.client.get_user_info(int(id))
-        except:
+        except Exception as e:
             await ctx.send(":x: Sorry, but at the moment, only user IDs are supported! Please check your input and try again.")
+            print(e)
             return
             
         embed = discord.Embed(color=16648720)
