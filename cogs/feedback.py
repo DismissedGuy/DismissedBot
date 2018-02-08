@@ -15,7 +15,7 @@ class Feedback():
         await ctx.author.send('Send your feedback here!')
 
     async def on_message(self, message):
-        if (message.author == self.client.user) or (not (message.channel.name == None)) or message.content.startswith('::') or self.sending:
+        if (message.author == self.client.user) or (not isinstance(message.channel, discord.abc.PrivateChannel)) or message.content.startswith('::') or self.sending:
             return
         self.sending = True
         await message.author.send('You want to send this feedback to the owner:\n```{}```\nIs this correct? (Yes/No)'.format(message.content))
