@@ -28,14 +28,14 @@ class Owner():
         python = '```py\n{}\n```'
         result = None
         
-    env = {
+        env = {
             'client': self.client,
             'ctx': ctx,
             'message': ctx.message,
             'server': ctx.guild,
             'channel': ctx.channel,
             'author': ctx.author,
-        }
+            }
         env.update(globals())
         
         try:
