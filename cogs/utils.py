@@ -40,9 +40,11 @@ class Utilities():
         #very dirty I know
         if r.text == 'False':
             'not in DBans'
+            listed = False
             color = 54528
         else:
             'in DBans'
+            listed = True
             rid = r.json()[0]
             reason = r.json()[3]
             proof = r.json()[4][9:(- 11)]
