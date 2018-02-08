@@ -53,7 +53,7 @@ class Utilities():
         embed = discord.Embed(color=color)
         embed.set_thumbnail(url=user.avatar_url)
         embed.add_field(name='User:', value='{0.name}#{0.discriminator} (ID: {0.id})'.format(user), inline=False)
-        embed.add_field(name='Is on DBans:', value=True, inline=False)
+        embed.add_field(name='Is on DBans:', value=listed, inline=False)
 
         if listed:
             embed.add_field(name='Report ID:', value=rid, inline=True)
