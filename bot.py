@@ -17,17 +17,21 @@ async def load(ctx, extension_name: str):
     'Loads an extension.'
     try:
         client.load_extension("cogs." + extension_name)
-    except (AttributeError, ImportError) as e:
-        await ctx.send('```py\n{}: {}\n```'.format(type(e).__name__, str(e)))
+    except Exception as e:
+        await ctx.send(':x: An error occured while loading the `{}` cog:\n```py\n{}: {}\n```'.format(extension_name,type(e).__name__, str(e)))
         return
-    await ctx.send('{} loaded.'.format(extension_name))
+    await ctx.send(':white_check_mark: Successfully loaded cog: `{0}` in dir: `{"cogs." + 0}`'.format(extension_name))
 
 @client.command(hidden=True)
 @commands.is_owner()
 async def unload(ctx, extension_name: str):
     'Unloads an extension.'
-    client.unload_extension("cogs." + extension_name)
-    await ctx.send('{} unloaded.'.format(extension_name))
+    try:
+        client.load_extension("cogs." + extension_name)
+    except Exception as e:
+        await ctx.send(':x: An error occured while unloading the `{}` cog:\n```py\n{}: {}\n```'.format(extension_name,type(e).__name__, str(e)))
+        return
+    await ctx.send(':white_check_mark: Successfully unloaded cog: `{0}` in dir: `{"cogs." + 0}`'.format(extension_name))
 
 @client.event
 async def on_ready():

@@ -32,7 +32,7 @@ class Owner():
             'client': self.client,
             'ctx': ctx,
             'message': ctx.message,
-            'server': ctx.guild,
+            'guild': ctx.guild,
             'channel': ctx.channel,
             'author': ctx.author,
             }
