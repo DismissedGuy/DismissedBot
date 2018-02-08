@@ -7,9 +7,22 @@ class Utilities():
 
     def __init__(self, bot):
         self.client = bot
+		
+	@commands.command(description='Fetch the avatar of a user')
+	async def avatar(self, ctx, id=discord.Member.id):
+		try:
+			user = await self.client.get_user_info(id)
+		except:
+			await ctx.send(":x: Sorry, but at the moment, only user IDs are supported! Please check your input and try again.")
+			return
+			
+		embed = discord.Embed(color=16648720)
+		embed.set_image(user.avatar_url)
+		
+		ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
 
     @commands.command(description='Check dbans for a user ID')
-    async def dbans(self, ctx, id=390709163837095937):
+    async def dbans(self, ctx, id=discord.Member.id):
         try:
             user = await self.client.get_user_info(id)
         except:
@@ -26,22 +39,25 @@ class Utilities():
         #very dirty I know
         if r.text == 'False':
             'not in DBans'
-            embed = discord.Embed(color=54528)
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.add_field(name='User:', value='{0.name}#{0.discriminator} (ID: {0.id})'.format(user), inline=False)
-            embed.add_field(name='Is on DBans:', value=False, inline=False)
+            color = 54528
         else:
             'in DBans'
+            rid = r.json()[0]
             reason = r.json()[3]
             proof = r.json()[4][9:(- 11)]
-            embed = discord.Embed(color=16648720)
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.add_field(name='User:', value='{0.name}#{0.discriminator} (ID: {0.id})'.format(user), inline=False)
-            embed.add_field(name='Is on DBans:', value=True, inline=False)
+            color = 16648720
+        
+        embed = discord.Embed(color=color)
+        embed.set_thumbnail(url=user.avatar_url)
+        embed.add_field(name='User:', value='{0.name}#{0.discriminator} (ID: {0.id})'.format(user), inline=False)
+        embed.add_field(name='Is on DBans:', value=True, inline=False)
+
+        if listed:
+            embed.add_field(name='Report ID:', value=rid, inline=True)
             embed.add_field(name='Reason:', value=reason, inline=True)
             embed.add_field(name='Proof:', value=proof, inline=True)
         
-        await ctx.channel.send(':white_check_mark: DBans list fetched!', embed=embed)
+        await ctx.send(':white_check_mark: DBans list fetched!', embed=embed)
 
     @commands.command()
     async def dist(self, ctx, long1, lat1, long2, lat2):
