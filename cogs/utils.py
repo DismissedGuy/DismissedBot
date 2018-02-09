@@ -23,9 +23,9 @@ class Utilities():
         ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
 
     @commands.command(description='Check dbans for a user ID')
-    async def dbans(self, ctx, id=discord.Member.id):
+    async def dbans(self, ctx, id):
         try:
-            user = await self.client.get_user_info(id)
+            user = await self.client.get_user_info(int(id))
         except:
             await ctx.send(':x: Please enter a correct user ID!')
             return
@@ -40,9 +40,11 @@ class Utilities():
         #very dirty I know
         if r.text == 'False':
             'not in DBans'
+            listed = False
             color = 54528
         else:
             'in DBans'
+            listed = True
             rid = r.json()[0]
             reason = r.json()[3]
             proof = r.json()[4][9:(- 11)]
@@ -51,7 +53,7 @@ class Utilities():
         embed = discord.Embed(color=color)
         embed.set_thumbnail(url=user.avatar_url)
         embed.add_field(name='User:', value='{0.name}#{0.discriminator} (ID: {0.id})'.format(user), inline=False)
-        embed.add_field(name='Is on DBans:', value=True, inline=False)
+        embed.add_field(name='Is on DBans:', value=listed, inline=False)
 
         if listed:
             embed.add_field(name='Report ID:', value=rid, inline=True)

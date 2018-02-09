@@ -15,7 +15,7 @@ class Feedback():
         await ctx.author.send('Send your feedback here!')
 
     async def on_message(self, message):
-        if (message.author == self.client.user) or (not (message.channel.name == None)) or message.content.startswith('::') or self.sending:
+        if (message.author == self.client.user) or (not isinstance(message.channel, discord.abc.PrivateChannel)) or message.content.startswith('::') or self.sending:
             return
         self.sending = True
         await message.author.send('You want to send this feedback to the owner:\n```{}```\nIs this correct? (Yes/No)'.format(message.content))
@@ -34,7 +34,7 @@ class Feedback():
         
         embed = discord.Embed(color=1044480)
         embed.add_field(name='{0.name}#{0.discriminator} (ID: {0.id})'.format(message.author), value=message.content, inline=False)
-        embed.set_footer(text=confirm.timestamp)
+        embed.set_footer(text=confirm.created_at)
         
         await self.client.get_channel(408972669615341568).send(':exclamation: Received a new feedback!', embed=embed)
         await message.author.send(':white_check_mark: Successfully sent feedback!')
