@@ -17,10 +17,10 @@ class Utilities():
             print(e)
             return
             
-        embed = discord.Embed(title='[Link]({})'.format(user.avatar_url), color=16648720)
+        embed = discord.Embed(title='Link: {}'.format(user.avatar_url), color=16648720)
         embed.set_image(url=user.avatar_url)
         
-        ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
+        await ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
 
     @commands.command(description='Check dbans for a user ID')
     async def dbans(self, ctx, id):
