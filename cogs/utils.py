@@ -17,7 +17,7 @@ class Utilities():
             print(e)
             return
             
-        embed = discord.Embed(color=16648720)
+        embed = discord.Embed(title='[Link]({})'.format(user.avatar_url), color=16648720)
         embed.set_image(user.avatar_url)
         
         ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
