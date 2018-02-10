@@ -11,9 +11,11 @@ class Utilities():
         
     async def get_member_by_name(self, ctx, search):
         names = difflib.get_close_matches(search, [z.name for z in ctx.guild.members], n=5, cutoff=0.4)
+        print(names)
         users = []
         for i in names:
             users.append(discord.utils.find(lambda z: z.name == i, ctx.guild.members))
+        print(users)
         
         if not users:
             await ctx.send(":x: I couldn't find any users! Tip: try an ID as input.")
@@ -27,6 +29,7 @@ class Utilities():
     @commands.command(description='Fetch the avatar of a user')
     async def avatar(self, ctx, id):
         if not id.isdecimal(): #assume they're passing a search
+            print("passing search")
             id = self.get_member_by_name(ctx, id)
             if not id: #returned an error
                 return #handling is already done
