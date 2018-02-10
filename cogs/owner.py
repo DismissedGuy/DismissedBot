@@ -1,6 +1,6 @@
 import discord
 import inspect
-import ctypes
+import difflib
 import subprocess
 from discord.ext import commands
 
