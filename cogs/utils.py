@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 import os, pytz, datetime, asyncio, requests
-import difflib.get_close_matches as match
+import difflib
 from geopy.distance import vincenty
 
 class Utilities():
@@ -10,7 +10,7 @@ class Utilities():
         self.client = bot
         
     def get_member_by_name(self, ctx, search):
-        names = match(search, [z.name for z in ctx.guild.members], n=5, cutoff=0.4)
+        names = difflib.get_close_matches(search, [z.name for z in ctx.guild.members], n=5, cutoff=0.4)
         users = []
         for i in names:
             users.append(discord.utils.find(lambda z: z.name == i, ctx.guild.members))
