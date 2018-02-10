@@ -10,18 +10,16 @@ class Utilities():
         self.client = bot
         
     async def get_member_by_name(self, ctx, search):
-        names = difflib.get_close_matches(search, [z.name for z in ctx.guild.members], n=5, cutoff=0.4)
-        print(names)
+        names = difflib.get_close_matches(search, [z.name for z in ctx.guild.members], n=5, cutoff=0.5)
         users = []
         for i in names:
             users.append(discord.utils.find(lambda z: z.name == i, ctx.guild.members))
-        print(users)
         
         if not users:
             await ctx.send(":x: I couldn't find any users! Tip: try an ID as input.")
             return False #error occured
         elif len(users) > 1:
-            await ctx.send(":exclamation: Multiple users were found:\n" + '\n- '.join([v.name for v in users]))
+            await ctx.send(":exclamation: Multiple users were found:\n- " + '\n- '.join(["**"+str(v)+"**" for v in users]))
             return False #error occured
         else: #1 user found, return the ID of that user
             return users[0].id
@@ -29,19 +27,17 @@ class Utilities():
     @commands.command(description='Fetch the avatar of a user')
     async def avatar(self, ctx, id):
         if not id.isdecimal(): #assume they're passing a search
-            print("passing search")
             id = await self.get_member_by_name(ctx, id)
             if not id: #returned an error
                 return #handling is already done
         
         try:
             user = await self.client.get_user_info(id)
-        except Exception as e:
-            await ctx.send(":x: Sorry, but at the moment, only user IDs are supported! Please check your input and try again.")
-            print(e)
+        except:
+            await ctx.send(":x: An error occured while fetching the user! Please check your input and try again.")
             return
             
-        embed = discord.Embed(title='Link: {}'.format(user.avatar_url), color=16648720)
+        embed = discord.Embed(title=user.avatar_url, color=16648720)
         embed.set_image(url=user.avatar_url)
         
         await ctx.send(":white_check_mark: Here's the avatar for `{0.name}#{0.discriminator}`!".format(user), embed=embed)
@@ -49,7 +45,7 @@ class Utilities():
     @commands.command(description='Check dbans for a user ID')
     async def dbans(self, ctx, id):
         if not id.isdecimal(): #assume they're passing a search
-            id = self.get_member_by_name(ctx, id)
+            id = await self.get_member_by_name(ctx, id)
             if not id: #returned an error
                 return #handling is already done
         
