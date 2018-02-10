@@ -30,7 +30,7 @@ class Utilities():
     async def avatar(self, ctx, id):
         if not id.isdecimal(): #assume they're passing a search
             print("passing search")
-            id = self.get_member_by_name(ctx, id)
+            id = await self.get_member_by_name(ctx, id)
             if not id: #returned an error
                 return #handling is already done
         
