@@ -9,7 +9,7 @@ class Utilities():
     def __init__(self, bot):
         self.client = bot
         
-    def get_member_by_name(self, ctx, search):
+    async def get_member_by_name(self, ctx, search):
         names = difflib.get_close_matches(search, [z.name for z in ctx.guild.members], n=5, cutoff=0.4)
         users = []
         for i in names:
