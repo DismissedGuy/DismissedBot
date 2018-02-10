@@ -16,10 +16,10 @@ class Utilities():
             users.append(discord.utils.find(lambda z: z.name == i, ctx.guild.members))
         
         if not users:
-            ctx.send(":x: I couldn't find any users! Tip: try an ID as input.")
+            await ctx.send(":x: I couldn't find any users! Tip: try an ID as input.")
             return False #error occured
         elif len(users) > 1:
-            ctx.send(":exclamation: Multiple users were found:\n" + '\n- '.join("**{0.name}#{0.discriminator}**".format(v) for v in users))
+            await ctx.send(":exclamation: Multiple users were found:\n" + '\n- '.join("**{0.name}#{0.discriminator}**".format(v) for v in users))
             return False #error occured
         else: #1 user found, return the ID of that user
             return users[0].id
