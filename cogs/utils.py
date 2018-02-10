@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 import os, pytz, datetime, asyncio, requests
+import difflib.get_close_matches as match
 from geopy.distance import vincenty
 
 class Utilities():
@@ -8,8 +9,28 @@ class Utilities():
     def __init__(self, bot):
         self.client = bot
         
+    def get_member_by_name(self, ctx, search):
+        names = match(search, [z.name for z in ctx.guild.members], n=5, cutoff=0.4)
+        users = []
+        for i in names:
+            users.append(discord.utils.find(lambda z: z.name == i, ctx.guild.members))
+        
+        if not users:
+            ctx.send(":x: I couldn't find any users! Tip: try an ID as input.")
+            return False #error occured
+        elif len(users) > 1:
+            ctx.send(":exclamation: Multiple users were found:\n" + '\n- '.join(users))
+            return False #error occured
+        else: #1 user found, return the ID of that user
+            return users[0].id
+        
     @commands.command(description='Fetch the avatar of a user')
     async def avatar(self, ctx, id):
+        if not id.isdecimal(): #assume they're passing a search
+            id = self.get_member_by_name(ctx, id)
+            if not id: #returned an error
+                return #handling is already done
+        
         try:
             user = await self.client.get_user_info(id)
         except Exception as e:
@@ -24,6 +45,11 @@ class Utilities():
 
     @commands.command(description='Check dbans for a user ID')
     async def dbans(self, ctx, id):
+        if not id.isdecimal(): #assume they're passing a search
+            id = self.get_member_by_name(ctx, id)
+            if not id: #returned an error
+                return #handling is already done
+        
         try:
             user = await self.client.get_user_info(int(id))
         except:
