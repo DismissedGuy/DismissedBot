@@ -7,7 +7,7 @@ class About():
     
     @commands.command(description='Shows the API latency')
     async def ping(self, ctx):
-        ctx.send(":ping_pong: Pong! Latency: `{}ms`".format(round(self.client.latency * 1000)))
+        await ctx.send(":ping_pong: Pong! Latency: `{}ms`".format(round(self.client.latency * 1000)))
         
 def setup(bot):
     bot.add_cog(About(bot))
