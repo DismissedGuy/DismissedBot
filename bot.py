@@ -8,8 +8,9 @@ logging.basicConfig(level=logging.INFO)
 
 'COGS (auto recognized)'
 startup_extensions = ['cogs.' + cog.strip('.py') for cog in os.listdir('cogs/')]
+startup_presence = "Type ::help!"
 
-client = Bot(description='DismissedBot is a multifunctional Discord bot focused on being very user friendly.', command_prefix='::', pm_help=True)
+client = Bot(description='DismissedBot is a multifunctional Discord bot focused on being very user friendly.', command_prefix='::', pm_help=True, game=discord.Game(name=startup_presence, type=0))
 
 @client.command(hidden=True)
 @commands.is_owner()

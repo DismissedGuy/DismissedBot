@@ -10,7 +10,7 @@ class Fun():
         self.client = bot
 
     async def on_message(self, message):
-        if (message.author == self.client.user) or (message.channel.name == None) or message.content.startswith('::'):
+        if (message.author == self.client.user) or (isinstance(message.channel, discord.abc.PrivateChannel) or message.content.startswith('::'):
             return
         if message.channel.name.lower() == 'cleverbot':
             cw = CleverWrap(os.environ['CLEVER_TOKEN'])
