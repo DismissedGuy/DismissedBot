@@ -10,6 +10,7 @@ class Owner():
 
     def __init__(self, bot):
         self.client = bot
+        self._last_result = None
 
     @commands.command(hidden=True)
     @commands.is_owner()
