@@ -56,7 +56,7 @@ class Owner():
         """Evaluates a code"""
 
         env = {
-            'bot': self.bot,
+            'client': self.client,
             'ctx': ctx,
             'channel': ctx.channel,
             'author': ctx.author,
