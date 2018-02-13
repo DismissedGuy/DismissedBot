@@ -1,8 +1,6 @@
 import discord
 import inspect
-import io
-import subprocess
-import traceback
+import io, subprocess, traceback, textwrap
 from contextlib import redirect_stdout
 from discord.ext import commands
 
