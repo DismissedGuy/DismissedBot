@@ -113,7 +113,7 @@ class Owner():
     @commands.is_owner()
     async def restart(self, ctx, *, reason='Restart'):
       #very dirty restart
-      ctx.send(":wave: Restarting...")
+      await ctx.send(":wave: Restarting...")
       sys.exit(reason)
 
 def setup(bot):
