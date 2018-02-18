@@ -1,6 +1,6 @@
 import discord
 import inspect
-import io, subprocess, traceback, textwrap
+import io, subprocess, traceback, textwrap, sys
 from contextlib import redirect_stdout
 from discord.ext import commands
 
@@ -108,6 +108,13 @@ class Owner():
             except:
                 pass
             await msgchannel.send(embed=embed)
+
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def restart(self, ctx, *, reason='Restart'):
+      #very dirty restart
+      ctx.send(":wave: Restarting...")
+      sys.exit(reason)
 
 def setup(bot):
     bot.add_cog(Owner(bot))
