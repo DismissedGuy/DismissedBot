@@ -40,7 +40,7 @@ class Utilities():
 
         embed = discord.Embed(color=color)
         embed.set_thumbnail(url=user.avatar_url)
-        embed.add_field(name='User:', value='{0} (ID: {0.id})'.format(str(user), user), inline=False)
+        embed.add_field(name='User:', value='{0} (ID: {0.id})'.format(user), inline=False)
         embed.add_field(name='Is on DBans:', value=listed, inline=False)
 
         if listed:
