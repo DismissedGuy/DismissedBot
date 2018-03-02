@@ -33,7 +33,7 @@ class Feedback():
             return
         
         embed = discord.Embed(color=1044480)
-        embed.add_field(name='{0.name}#{0.discriminator} (ID: {0.id})'.format(message.author), value=message.content, inline=False)
+        embed.add_field(0} (ID: {0.id})'.format(message.author), value=message.content, inline=False)
         embed.set_footer(text=confirm.created_at)
         
         await self.client.get_channel(408972669615341568).send(':exclamation: Received a new feedback!', embed=embed)
