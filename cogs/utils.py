@@ -40,7 +40,7 @@ class Utilities():
 
         embed = discord.Embed(color=color)
         embed.set_thumbnail(url=user.avatar_url)
-        embed.add_field(name='User:', value='{0} (ID: {0.id})'.format(str(user), user), inline=False)
+        embed.add_field(name='User:', value='{0} (ID: {0.id})'.format(user), inline=False)
         embed.add_field(name='Is on DBans:', value=listed, inline=False)
 
         if listed:
@@ -66,8 +66,8 @@ class Utilities():
         currmsg = await ctx.send("Please wait while I'm getting the time...")
         confirm = 'Time for `{}`:'.format(tz)
 
-        for i in range(21):
-            await asyncio.sleep(3)
+        for i in range(7):
+            await asyncio.sleep(10)
             now = datetime.datetime.now(pytz.timezone(tz))
             date = ':calendar: {0.day}-{0.month}-{0.year}'.format(now)
             time = ':clock: {0.hour}:{0.minute}:{0.second}'.format(now)
