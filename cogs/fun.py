@@ -42,7 +42,7 @@ class Fun():
         await ctx.channel.send(':white_check_mark: Successfully retrieved autocompletions!', embed=embed)
 
     @commands.command(descrption="Choose from 2 or more random choices!", aliases=['choice'])
-    async def choose(self, ctx. *choices):
+    async def choose(self, ctx, *choices):
         if len(choices) <= 1: #command fails when len(args) == 0, but you can never be too sure...
             await ctx.send(":exclamation: You only gave me one thing to choose from! You don't wanna play this unfair, do you..?")
             return
