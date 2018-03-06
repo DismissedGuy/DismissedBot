@@ -53,7 +53,7 @@ class Utilities():
     @commands.command(description='Shows the current time.')
     async def time(self, ctx, *, tz='Europe/London'):
         if tz.lower() == 'list':
-            with open('tz.txt', 'w+') as timezones:
+            with open('timezones.txt', 'w+') as timezones:
                 timezones.write(str(pytz.all_timezones))
             await ctx.channel.send(file=discord.File('tz.txt', filename='tz.txt'))
             os.remove('tz.txt')
