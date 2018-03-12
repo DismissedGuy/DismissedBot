@@ -38,4 +38,4 @@ class CommandErrorHandler:
         await msg.edit(content=msg.content, embed=discord.Embed(description=type(error) + error + error.__traceback__), color=0cFF000)
 
 def setup(bot):
-bot.add_cog(CommandErrorHandler(bot))
+    bot.add_cog(CommandErrorHandler(bot))
