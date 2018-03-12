@@ -29,7 +29,7 @@ class CommandErrorHandler:
             await client.wait_for('reaction_add', timeout=60.0, check=lambda reac, _: str(reac.emoji) == '📰')
         except asyncio.TimeoutError:
             return
-        await msg.edit(content=msg.content, embed=discord.Embed(description=type(error) + error + error.__traceback__), color=0cFF0000)
+        await msg.edit(content=msg.content, embed=discord.Embed(description=type(error) + error + error.__traceback__, color=0cFF0000))
 
 def setup(bot):
     bot.add_cog(CommandErrorHandler(bot))
