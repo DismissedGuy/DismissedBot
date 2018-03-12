@@ -14,21 +14,15 @@ class CommandErrorHandler:
         if hasattr(ctx.command, 'on_error'):
             return
 
-        ignored = (commands.UserInputError)
-
         # Allows us to check for original exceptions raised and sent to CommandInvokeError.
         # If nothing is found. We keep the exception passed to on_command_error.
         error = getattr(error, 'original', error)
-
-        # Anything in ignored will return and prevent anything happening.
-        if isinstance(error, ignored):
-            return
 
         elif isinstance(error, commands.errors.MissingRequiredArgument):
             errormsg = ':x: You\'re missing one or more arguments! Check ::help for the correct format.'
 
         #finishing user output
-        msg = await ctx.send(errmsg)
+        msg = await ctx.send(errormsg)
         await msg.add_reaction('📰')
 
         try:
