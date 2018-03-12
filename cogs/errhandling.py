@@ -18,7 +18,7 @@ class CommandErrorHandler:
         # If nothing is found. We keep the exception passed to on_command_error.
         error = getattr(error, 'original', error)
 
-        elif isinstance(error, commands.errors.MissingRequiredArgument):
+        if isinstance(error, commands.errors.MissingRequiredArgument):
             errormsg = ':x: You\'re missing one or more arguments! Check ::help for the correct format.'
 
         #finishing user output
