@@ -26,9 +26,9 @@ class CommandErrorHandler:
         options = ['📰', '📧']
 
         errormsg += """
-        ------------------------------------------------------------------------
-        :newspaper: - Show traceback (for debugging purposes)
-        :e_mail: - Send as a bug report (if you think this is an error)
+        -----------------------------------------
+        :newspaper: - Traceback
+        :e_mail: - Report bug
         """
 
         msg = await ctx.send(errormsg)
