@@ -26,7 +26,7 @@ class CommandErrorHandler:
         await msg.add_reaction('📰')
 
         try:
-            await self.client.wait_for('reaction_add', timeout=30.0, check=lambda reac, _: str(reac.emoji) == '📰')
+            await self.client.wait_for('reaction_add', timeout=30.0, check=lambda reac, usr: str(reac.emoji) == '📰' and not usr.bot)
         except asyncio.TimeoutError:
             return
         await msg.edit(content=msg.content, embed=discord.Embed(description=f"```{type(error)} {error} {error.__traceback__}```", color=0xFF0000))
