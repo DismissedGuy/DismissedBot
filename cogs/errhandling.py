@@ -32,7 +32,7 @@ class CommandErrorHandler:
         """
 
         msg = await ctx.send(errormsg)
-        for emote in options.:
+        for emote in options:
             await msg.add_reaction(emote)
 
         try:
