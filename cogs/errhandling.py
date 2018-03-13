@@ -1,5 +1,6 @@
 import sys
 import asyncio
+from traceback import format_list, extract_tb
 from discord.ext import commands
 import discord
 
@@ -26,10 +27,10 @@ class CommandErrorHandler:
         await msg.add_reaction('📰')
 
         try:
-            await self.client.wait_for('reaction_add', timeout=30.0, check=lambda reac, usr: str(reac.emoji) == '📰' and not usr.bot)
+            await self.client.wait_for('reaction_add', timeout=30.0, check=lambda reac, usr: str(reac.emoji) == '📰' and reac.message.id == msg.id and not usr.bot)
         except asyncio.TimeoutError:
             return
-        await msg.edit(content=msg.content, embed=discord.Embed(description=f"```{type(error)} {error} {error.__traceback__}```", color=0xFF0000))
+        await msg.edit(content=msg.content, embed=discord.Embed(description=f"```{''.join(format_list(extract_tb(error.__traceback__)))}\n{error}```", color=0xFF0000))
 
 def setup(bot):
     bot.add_cog(CommandErrorHandler(bot))
