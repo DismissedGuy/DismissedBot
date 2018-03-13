@@ -43,7 +43,7 @@ class CommandErrorHandler:
         if str(reaction) == '📰':
             await msg.edit(content=msg.content, embed=discord.Embed(description=f"```{''.join(format_list(extract_tb(error.__traceback__)))}\n{error}```", color=0xFF0000))
         elif str(reaction) == '📧':
-            await self.client.get_guild(340929662131765259).get_channel(423156782743945226).send(':bug: Traceback coming soon:tm:)
+            await self.client.get_guild(340929662131765259).get_channel(423156782743945226).send(":bug: Traceback coming soon:tm:")
             await ctx.send(":white_check_mark: Successfully reported this error as a bug!")
 
 def setup(bot):
