@@ -5,7 +5,7 @@ import discord
 
 class CommandErrorHandler:
     def __init__(self, bot):
-        self.bot = bot
+        self.client = bot
 
     async def on_command_error(self, ctx, error):
         errormsg = ':x: An unhandled exception has occured! Please try again later.'
