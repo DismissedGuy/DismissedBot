@@ -26,10 +26,10 @@ class CommandErrorHandler:
         options = ['📰', '📧']
 
         errormsg += """
-        -----------------------------------------
-        :newspaper: - Traceback
-        :e_mail: - Report bug
-        """
+-----------------------------------------
+    :newspaper: - Traceback
+    :e_mail: - Report bug
+"""
 
         msg = await ctx.send(errormsg)
         for emote in options:
