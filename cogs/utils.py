@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-import os, pytz, datetime, asyncio, requests
+import os, pytz, datetime, asyncio
 import difflib
 from geopy.distance import vincenty
 
@@ -23,7 +23,7 @@ class Utilities():
             'userid': user.id,
             'version': 3,
         }
-        r = requests.post('https://bans.discordlist.net/api', data=payload)
+        r = self.bot.aiohttp.post('https://bans.discordlist.net/api', data=payload)
 
         #very dirty I know
         if r.text == 'False':
