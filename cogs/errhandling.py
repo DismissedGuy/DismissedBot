@@ -38,21 +38,21 @@ class CommandErrorHandler:
             except asyncio.TimeoutError:
                 return
 
-                if str(reaction) == '📰':
-                    await msg.edit(content=msg.content, embed=discord.Embed(description={error}, color=0xFF0000))
-                elif str(reaction) == '📧':
-                    if already_sent:
-                        await ctx.send(":x: You've already sent a bug report for this error!")
-                    else:
-                        report = """
-                        :bug: Report by {ctx.author} regarding the command {ctx.command.qualified_name}:
-                        **Traceback:**
-                        ```''.join(format_list(extract_tb(error.__traceback__)))```
-                        **Error:**
-                        ```{error}```
-                        """
-                        await self.client.get_guild(340929662131765259).get_channel(423156782743945226).send(report)
-                        await ctx.send(":white_check_mark: Successfully reported this error as a bug!")
+            if str(reaction) == '📰':
+                await msg.edit(content=msg.content, embed=discord.Embed(description={error}, color=0xFF0000))
+            elif str(reaction) == '📧':
+                if already_sent:
+                    await ctx.send(":x: You've already sent a bug report for this error!")
+                else:
+                    report = """
+                    :bug: Report by {ctx.author} regarding the command {ctx.command.qualified_name}:
+                    **Traceback:**
+                    ```''.join(format_list(extract_tb(error.__traceback__)))```
+                    **Error:**
+                    ```{error}```
+                    """
+                    await self.client.get_guild(340929662131765259).get_channel(423156782743945226).send(report)
+                    await ctx.send(":white_check_mark: Successfully reported this error as a bug!")
 
 def setup(bot):
     bot.add_cog(CommandErrorHandler(bot))
