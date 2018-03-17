@@ -47,7 +47,7 @@ class CommandErrorHandler:
                     report = f"""
 :bug: Report by {ctx.author} regarding the command {ctx.command.qualified_name}:
     **Traceback:**
-```''.join(format_list(extract_tb(error.__traceback__)))```
+```{''.join(format_list(extract_tb(error.__traceback__)))}```
     **Error:**
 ```{error}```
 """
