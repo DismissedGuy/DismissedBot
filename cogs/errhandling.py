@@ -44,13 +44,13 @@ class CommandErrorHandler:
                 if already_sent:
                     await ctx.send(":x: You've already sent a bug report for this error!")
                 else:
-                    report = """
-                    :bug: Report by {ctx.author} regarding the command {ctx.command.qualified_name}:
-                    **Traceback:**
-                    ```''.join(format_list(extract_tb(error.__traceback__)))```
-                    **Error:**
-                    ```{error}```
-                    """
+                    report = f"""
+:bug: Report by {ctx.author} regarding the command {ctx.command.qualified_name}:
+    **Traceback:**
+```''.join(format_list(extract_tb(error.__traceback__)))```
+    **Error:**
+```{error}```
+"""
                     await self.client.get_guild(340929662131765259).get_channel(423156782743945226).send(report)
                     await ctx.send(":white_check_mark: Successfully reported this error as a bug!")
 
