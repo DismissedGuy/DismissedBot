@@ -23,7 +23,7 @@ class Utilities():
             'userid': user.id,
             'version': 3,
         }
-        r = self.bot.aiohttp.post('https://bans.discordlist.net/api', data=payload)
+        r = self.client.aiohttp.post('https://bans.discordlist.net/api', data=payload)
 
         #very dirty I know
         if r.text == 'False':

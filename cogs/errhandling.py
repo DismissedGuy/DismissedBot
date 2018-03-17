@@ -9,8 +9,6 @@ class CommandErrorHandler:
         self.client = bot
 
     async def on_command_error(self, ctx, error):
-        errormsg = ':x: An unhandled exception has occured! Please try again later.'
-
         # prevent commands with local handlers being handled here
         if hasattr(ctx.command, 'on_error'):
             return
@@ -21,10 +19,13 @@ class CommandErrorHandler:
 
         if isinstance(error, commands.errors.MissingRequiredArgument):
             msg = await ctx.send(f':x: You\'re missing one or more arguments! Check `::help {ctx.command.qualified_name}` for the correct format.')
-            options = ['📰']
+            options = ['📧']
         elif isinstance(error, commands.errors.NotOwner):
-            msg = await ctx.send(f'Hmmm... I don\'t think you are my owner.')
+            msg = await ctx.send('Hmmm... I don\'t think you are my owner.')
             options = [] #do not allow bug reports
+        else: #unhandled
+            msg = await ctx.send(':x: Uh oh.. An unhandled exception has occured! Can you _please_ be so nice to leave me a bug report? Thanks!')
+            options = ['📰', '📧']
 
         #finishing user output
         for emote in options:

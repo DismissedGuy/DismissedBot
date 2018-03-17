@@ -5,7 +5,6 @@ import aiohttp
 class About():
     def __init__(self, bot):
         self.client = bot
-        self.bot.aiohttp = aiohttp.ClientSession() #define it here for god's sake
 
     @commands.command(description='Shows the API latency')
     async def ping(self, ctx):
