@@ -3,6 +3,7 @@ import logging
 from discord.ext.commands import Bot
 from discord.ext import commands
 import discord
+import aiohttp
 
 logging.basicConfig(level=logging.INFO)
 

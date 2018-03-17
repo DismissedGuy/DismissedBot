@@ -1,6 +1,5 @@
 from discord.ext import commands
 import discord
-import aiohttp
 
 class About():
     def __init__(self, bot):
