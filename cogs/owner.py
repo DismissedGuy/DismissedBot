@@ -114,7 +114,7 @@ class Owner():
     async def restart(self, ctx, *, reason='Restart'):
       #very dirty restart
       await ctx.send(":wave: Restarting...")
-      await client.logout() #not so dirty after all?
+      await self.client.logout() #not so dirty after all?
       sys.exit(reason)
 
 def setup(bot):
