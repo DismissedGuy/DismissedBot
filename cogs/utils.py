@@ -35,7 +35,7 @@ class Utilities():
         else:
             'in DBans'
             listed = True
-            rid = r.json()[0]
+            rid = await r.json()[0]
             reason = await r.json()[3]
             proof = await r.json()[4][9:(- 11)]
             color = 16648720
