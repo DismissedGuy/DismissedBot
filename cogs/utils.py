@@ -23,7 +23,9 @@ class Utilities():
             'userid': user.id,
             'version': 3,
         }
-        r = await self.client.aiohttp.post('https://bans.discordlist.net/api', data=payload)
+        async with self.client.aiosession as cs:
+            async with cs.post('https://bans.discordlist.net/api', data=payload) as resp:
+                r = resp
 
         #very dirty I know
         if r.text == 'False':
