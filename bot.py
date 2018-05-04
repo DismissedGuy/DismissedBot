@@ -40,7 +40,7 @@ async def unload(ctx, extension_name: str):
 
 @client.event
 async def on_ready():
-    client.aiosession = await aiohttp.ClientSession()
+    client.aiosession = aiohttp.ClientSession()
     print(discord.__version__)
     print('------------------')
     print('Logged in as:')
