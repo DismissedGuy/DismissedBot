@@ -34,10 +34,11 @@ class Utilities():
             color = 54528
         else:
             'in DBans'
+            data = await r.json()
             listed = True
-            rid = await r.json()[0]
-            reason = await r.json()[3]
-            proof = await r.json()[4][9:(- 11)]
+            rid = data[0]
+            reason = data[3]
+            proof = data[4][9:(- 11)]
             color = 16648720
 
         embed = discord.Embed(color=color)
