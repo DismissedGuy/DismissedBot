@@ -19,7 +19,7 @@ class Utilities():
     @commands.command(description='Check dbans for a user ID')
     async def dbans(self, ctx, user : discord.User):
         payload = {
-            'token': os.environ['DBANS_TOKEN'],
+            'token': self.client.config['DBANS_TOKEN'],
             'userid': user.id,
             'version': 3,
         }
