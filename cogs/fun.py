@@ -13,7 +13,7 @@ class Fun():
         if (message.author == self.client.user) or (isinstance(message.channel, discord.abc.PrivateChannel)) or message.content.startswith('::'):
             return
         if message.channel.name.lower() == 'cleverbot':
-            cw = CleverWrap(os.environ['CLEVER_TOKEN'])
+            cw = CleverWrap(self.client.config['CLEVER_TOKEN'])
             if message.content.lower() == 'reset':
                 cw.reset()
                 await message.channel.send(':white_check_mark: Successfully reset cleverbot configuration!')
