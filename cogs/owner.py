@@ -109,13 +109,12 @@ class Owner():
                 pass
             await msgchannel.send(embed=embed)
 
-    @commands.command(hidden=True)
+    @commands.command(hidden=True, aliases=['die'])
     @commands.is_owner()
-    async def restart(self, ctx, *, reason='Restart'):
+    async def poweroff(self, ctx):
       #very dirty restart
-      await ctx.send(":wave: Restarting...")
-      await self.client.logout() #not so dirty after all?
-      sys.exit(reason)
+      await ctx.send(":wave: Powering down...")
+      await self.client.logout()
 
 def setup(bot):
     bot.add_cog(Owner(bot))
