@@ -15,7 +15,6 @@ startup_presence = "Type ::help!"
 
 client = Bot(description='DismissedBot is a multifunctional Discord bot focused on being very user friendly.', command_prefix='::', pm_help=True, game=discord.Game(name=startup_presence, type=0))
 client.config = json.load(open('config.json'))
-client.aiosession = aiohttp.ClientSession()
 
 @client.command(hidden=True)
 @commands.is_owner()
@@ -41,6 +40,7 @@ async def unload(ctx, extension_name: str):
 
 @client.event
 async def on_ready():
+    client.aiosession = await aiohttp.ClientSession()
     print(discord.__version__)
     print('------------------')
     print('Logged in as:')
