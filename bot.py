@@ -3,7 +3,9 @@ import logging
 from discord.ext.commands import Bot
 from discord.ext import commands
 import discord
+import json
 import aiohttp
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -12,6 +14,7 @@ startup_extensions = ['cogs.' + cog.strip('.py') for cog in os.listdir('cogs/')]
 startup_presence = "Type ::help!"
 
 client = Bot(description='DismissedBot is a multifunctional Discord bot focused on being very user friendly.', command_prefix='::', pm_help=True, game=discord.Game(name=startup_presence, type=0))
+client.config = json.load(open('config.json'))
 
 @client.command(hidden=True)
 @commands.is_owner()
@@ -52,4 +55,4 @@ if __name__ == '__main__':
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
             print('Failed to load extension {}\n{}'.format(extension, exc))
-    client.run(os.environ['BOT_TOKEN'])
+    client.run(client.config['BOT_TOKEN'])
