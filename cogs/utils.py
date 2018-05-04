@@ -36,8 +36,8 @@ class Utilities():
             'in DBans'
             listed = True
             rid = r.json()[0]
-            reason = r.json()[3]
-            proof = r.json()[4][9:(- 11)]
+            reason = await r.json()[3]
+            proof = await r.json()[4][9:(- 11)]
             color = 16648720
 
         embed = discord.Embed(color=color)
